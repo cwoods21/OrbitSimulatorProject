@@ -1,29 +1,47 @@
-import java.lang.Math;
+import javax.swing.*;
+import java.lang.*;
+import java.util.*;
+import java.awt.*;
 public class Vector
 {
-  int x;
-  int y;
-  int magnitude;
+  double x;
+  double y;
+  double magnitude;
 
-  public Vector(int x, int y)
+  public Vector(double x, double y)
   {
-    x = x;
-    y = y;
-    magnitude =  (int) (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+    this.x = x;
+    this.y = y;
+    magnitude = (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
   }
 
-  public Vector subtract(Vector vector)
+  public Vector difference(Vector vector)
   {
-    Vector toReturn = new Vector(x - vector.x, y - vector.y);
+    Vector toReturn = new Vector(this.x - vector.x, this.y - vector.y);
     return toReturn;
   }
-  public int getMagnitude()
+  public Vector sum(Vector vector)
+  {
+    Vector toReturn = new Vector(this.x - vector.x, this.y - vector.y);
+    return toReturn;
+  }
+
+  public double getMagnitude()
   {
     return magnitude;
   }
   public void add(Vector v)
   {
-    x += v.x;
-    y = v.y;
+    this.x += v.x;
+    this.y += v.y;
+  }
+
+  public static Vector calculateAcceleration(Planet planet1, Planet planet2)
+  {
+      Vector toReturn = new Vector (0, 0);
+      Vector distance = planet1.getDistance(planet2);
+      toReturn.x += (distance.x * planet2.mass) / (Math.pow(distance.getMagnitude(), 3));
+      toReturn.y += (distance.y * planet2.mass) / (Math.pow(distance.getMagnitude(), 3));
+      return toReturn;
   }
 }
