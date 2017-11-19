@@ -25,7 +25,7 @@ public class World
     {
       planets.get(i).draw(g);
 
-      System.out.println( planets.get(i).arrayPos + ": " + planets.get(i).toString());
+      //System.out.println(planets.get(i).arrayPos + ": " + planets.get(i).toString());
 
     }
   }
