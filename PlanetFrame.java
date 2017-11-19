@@ -10,11 +10,13 @@ public class PlanetFrame extends JFrame
   {
     super("Orbit Simulator");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    PlanetPanel mainInstance = new PlanetPanel();
-    SettingsPanel otherInstance = new SettingsPanel();
-    setContentPane(otherInstance);
-    setContentPane(mainInstance);
-
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(new BorderLayout());
+    SettingsPanel settingspanel = new SettingsPanel();
+    PlanetPanel planetpanel = new PlanetPanel(settingspanel);
+    mainPanel.add(planetpanel, BorderLayout.CENTER);
+    mainPanel.add(settingspanel, BorderLayout.EAST);
+    setContentPane(mainPanel);
     pack();
     setVisible(true);
   }
