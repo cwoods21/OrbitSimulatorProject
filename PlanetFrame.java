@@ -9,6 +9,7 @@ public class PlanetFrame extends JFrame
   public PlanetFrame()
   {
     super("Orbit Simulator");
+
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JPanel mainPanel = new JPanel();
     mainPanel.setLayout(new BorderLayout());
@@ -23,7 +24,20 @@ public class PlanetFrame extends JFrame
 
   public static void main(String[] arguments)
   {
+    setLookandFeel();
     PlanetFrame frame = new PlanetFrame();
 
   }
+
+  private static void setLookandFeel()
+	{
+		try
+		{
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		}
+		catch(Exception x)
+		{
+
+		}
+	}
 }

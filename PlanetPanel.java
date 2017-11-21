@@ -7,7 +7,7 @@ public class PlanetPanel extends JPanel implements MouseListener
 {
   public static final int WIDTH = 1000;
   public static final int HEIGHT = 540;
-  public static final int FPS = 120;
+  public static final int FPS = 250;
   public SettingsPanel settingspanel;
   World world;
 
@@ -27,8 +27,6 @@ public class PlanetPanel extends JPanel implements MouseListener
     public PlanetPanel(SettingsPanel sp)
     {
       world = new World();
-      world.addPlanet(new Vector(350, 50), new Vector(1, 0), .001, 5);
-      world.addPlanet(new Vector(500, 270), new Vector(0, 0), 300, 20);
       this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
       addMouseListener(this);
       settingspanel = sp;
@@ -56,7 +54,14 @@ public class PlanetPanel extends JPanel implements MouseListener
       int yPos = e.getY();
       //System.out.println(xPos + ", " + yPos);
       Vector pos = new Vector((double) xPos, (double) yPos);
-      world.addPlanet(pos, new Vector(1, 0), .001, 5);
+      Vector vel = settingspanel.getVelocityVector();
+      double mass = settingspanel.getMass();
+      double radius = settingspanel.getRadius();
+      if(vel != null && mass > 0 && radius > 0)
+      {
+        world.addPlanet(pos, vel, mass, radius);
+      }
+
     }
 
     public void mousePressed(MouseEvent e)

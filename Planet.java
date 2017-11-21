@@ -16,8 +16,6 @@ public class Planet {
   {
     position = pos;
     radius = rad;
-    position.x -= radius;
-    position.y -= radius;
     velocity = vel;
     acceleration = new Vector(0, 0);
     mass = m;
@@ -62,7 +60,7 @@ public class Planet {
   {
     Color c = g.getColor();
     g.setColor(color);
-    g.drawOval((int) position.x, (int) position.y, (int) (2*radius), (int) (2*radius));
+    g.drawOval((int) (position.x - radius), (int) (position.y - radius), (int) (2*radius), (int) (2*radius));
     g.setColor(c);
   }
 
