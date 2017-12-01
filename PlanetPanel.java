@@ -7,7 +7,7 @@ public class PlanetPanel extends JPanel implements MouseListener
 {
   public static final int WIDTH = 1000;
   public static final int HEIGHT = 540;
-  public static final int FPS = 250;
+  public static final int FPS = 200;
   public SettingsPanel settingspanel;
   World world;
 
@@ -52,15 +52,37 @@ public class PlanetPanel extends JPanel implements MouseListener
 
       int xPos = e.getX();
       int yPos = e.getY();
-      //System.out.println(xPos + ", " + yPos);
-      Vector pos = new Vector((double) xPos, (double) yPos);
-      Vector vel = settingspanel.getVelocityVector();
-      double mass = settingspanel.getMass();
-      double radius = settingspanel.getRadius();
-      if(vel != null && mass > 0 && radius > 0)
+      Vector clickPos = new Vector(xPos, yPos);
+      int planetIndex = -1;
+      for(int i = 0; i < world.planets.size(); i ++)
       {
-        world.addPlanet(pos, vel, mass, radius);
+        Vector dFromC = world.planets.get(i).position.difference(clickPos);
+        if(dFromC.getMagnitude() < world.planets.get(i).radius)
+          {
+
+            planetIndex = i;
+            break;
+          }
       }
+      if(planetIndex != -1)
+      {
+        world.removePlanet(planetIndex);
+      }
+      else
+      {
+        Vector pos = new Vector((double) xPos, (double) yPos);
+        Vector vel = settingspanel.getVelocityVector();
+        double mass = settingspanel.getMass();
+        double radius = settingspanel.getRadius();
+        if(vel != null && mass > 0 && radius > 0)
+        {
+          world.addPlanet(pos, vel, mass, radius);
+        }
+
+      }
+
+      //System.out.println(xPos + ", " + yPos);
+
 
     }
 

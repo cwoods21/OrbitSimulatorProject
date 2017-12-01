@@ -10,7 +10,7 @@ public class Planet {
   Vector acceleration;
   final double mass;
   final double radius;
-  final int arrayPos;
+  //final int arrayPos;
   Color color;
   public Planet(Vector pos, Vector vel, double m, double rad, World w)
   {
@@ -20,23 +20,19 @@ public class Planet {
     acceleration = new Vector(0, 0);
     mass = m;
     world = w;
-    arrayPos = world.getNumberOfPlanets();
-    color = new Color(255, 255, 0);
+    //arrayPos = world.getNumberOfPlanets();
+    color = new Color(255, 255, 255);
   }
-  public void calculateInteractions()
+  public void calculateInteractions(int i)
   {
     ArrayList<Planet> planets = world.getPlanets();
     Vector newAcceleration = new Vector(0, 0);
 
     for(int index = 0; index < planets.size(); index++)
     {
-        if(index == arrayPos)
+        if(index != i)
         {
-          index = index;
-        }
 
-        else
-        {
           Vector v =  Vector.calculateAcceleration(this, planets.get(index));
           newAcceleration.add(v);
         }
@@ -60,7 +56,7 @@ public class Planet {
   {
     Color c = g.getColor();
     g.setColor(color);
-    g.drawOval((int) (position.x - radius), (int) (position.y - radius), (int) (2*radius), (int) (2*radius));
+    g.fillOval((int) (position.x - radius), (int) (position.y - radius), (int) (2*radius), (int) (2*radius));
     g.setColor(c);
   }
 

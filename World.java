@@ -37,12 +37,16 @@ public class World
 
       planets.get(i).position.add(planets.get(i).velocity);
       planets.get(i).velocity.add(planets.get(i).acceleration);
-      planets.get(i).calculateInteractions();
+      planets.get(i).calculateInteractions(i);
     }
   }
   public void addPlanet(Vector pos, Vector vel, double m, double rad)
   {
     Planet planet = new Planet(pos, vel, m, rad, this);
     planets.add(planet);
+  }
+  public void removePlanet(int i)
+  {
+    planets.remove(i);
   }
 }

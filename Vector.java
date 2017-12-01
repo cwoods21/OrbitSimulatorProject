@@ -7,7 +7,6 @@ public class Vector
   double x;
   double y;
   double magnitude;
-
   public Vector(double x, double y)
   {
     this.x = x;
@@ -34,6 +33,23 @@ public class Vector
   {
     this.x += v.x;
     this.y += v.y;
+    this.magnitude = (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+  }
+  public void subtract(Vector v)
+  {
+    this.x -= v.x;
+    this.y -= v.y;
+    this.magnitude = (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+  }
+
+  public Vector crossProduct(Vector vector)
+  {
+    return null;
+  }
+
+  public double dotProduct(Vector vector)
+  {
+    return null;
   }
 
   public static Vector calculateAcceleration(Planet planet1, Planet planet2)
